@@ -1,4 +1,4 @@
-# card-lib
+# CSCI2270-card-lib
 CSCI 2270 Project 1, A 52 card deck library
 
 This library allows the user to draw cards from a deck at random.
