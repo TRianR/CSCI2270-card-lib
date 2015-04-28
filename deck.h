@@ -7,7 +7,7 @@
 struct card
 {
     int value;
-    std::string suite;
+    std::string suit;
 };
 
 class deck
@@ -21,15 +21,15 @@ class deck
         void showDeck(); //Daniel
         void resetDeck(); //Daniel
         void irregularDeck(card* arrayOfNewCards[], int l); //Joaquin
-        void changeSuite(std::string oldSuite, std::string newSuite); //Daniel
-		void findRemaining(card* find); //Joaquin
-        //add two more functions
+        void changeSuit(std::string oldSuit, std::string newSuit); //Daniel
+	void findRemaining(card* find); //Joaquin
+
     protected:
     private:
         void constructDeck();
 
         int deckSize = 52;
-        std::string suites[4] = {"Hearts", "Clubs", "Diamonds", "Spades"};
+        std::string suits[4] = {"Hearts", "Clubs", "Diamonds", "Spades"};
         std::vector<card*> cardBuffer;
         std::queue<card*> cardOrder;
         std::queue<card*> removedCards;
