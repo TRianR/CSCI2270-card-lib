@@ -1,24 +1,37 @@
 # CSCI2270-card-lib
-CSCI 2270 Project 1, A 52 card deck library
-
-This library allows the user to draw cards from a deck at random.
-
-function 1: drawCard()
-Draws a card from the top of the deck.
-Returns a string.
-
-function 2: reshuffleDeck()
-Shuffles the current cards in the deck.
-
-function 3: replaceCard()
-Replaces the most recent drawn card into the deck and reshuffles the deck.
-
-function 4: showDeck()
-Prints the entire Deck.
-
-function 5: resetDeck()
-Replaces entire deck, then shuffles deck.
+CSCI 2270 Final Project, A 52 card deck library
 
 
+# Project Summary
+This library allows the user to draw cards from a deck at random. The library includes methods to shuffle cards, modify cards, replace drawn cards, modify suites, and create an irregular deck. 
+
+
+# How to run
+To use this library, one must move the 'deck.h' and 'deck.cpp' to their project folder, and use the "#include "deck.h"" library call.
+
+
+# Dependancies
+Below is a list of all libraries that were used in the project:
+ #include <iostream>
+ #include <queue>
+ #include <stdlib.h>
+ #include <time.h>
+
+
+# System Requirements
+This program was developed and tested on Linux.
+
+
+#Group Members
+Daniel Trahan
+Joaquin Lagarrigue
+
+
+#Contributers
+(This could be you!)
+
+
+#Open issues/Bugs
+No bugs yet!
 
 
