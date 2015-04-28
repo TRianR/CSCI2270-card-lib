@@ -22,6 +22,7 @@ class deck
         void resetDeck(); //Daniel
         void irregularDeck(card* arrayOfNewCards[], int l); //Joaquin
         void changeSuite(std::string oldSuite, std::string newSuite); //Daniel
+		void findRemaining(card* find); //Joaquin
         //add two more functions
     protected:
     private:

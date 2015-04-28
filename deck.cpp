@@ -117,7 +117,7 @@ void deck::replaceCard(int number1, string suit1, int number2, string suit2){
 	int decision;
 	cin>>decision;
 	switch(decision){
-		case 1:{
+		case 0:{
 			for(int i = 0; i < cardBuffer.size(); i++){
 				if(cardBuffer[i]->value == number1 and cardBuffer[i]->suite == suit1){
 					cardBuffer[i]->value = number2;
@@ -129,7 +129,7 @@ void deck::replaceCard(int number1, string suit1, int number2, string suit2){
 			cout<<"Card not found!"<<endl;
 			return;
 		}
-		case 2:{
+		case 1:{
 			int replaced = 0;
 			for(int i = 0; i < cardBuffer.size(); i++){
 				if(cardBuffer[i]->value == number1 and cardBuffer[i]->suite == suit1){
@@ -154,5 +154,33 @@ void deck::irregularDeck(card* array[], int length){
 	return;
 }
 
-
+//Finds the number of how many of a certain card is left
+void deck::findRemaining(card* find){
+	cout<<"Number or suit?: "<<endl;
+	cout<<"Number = 0; Suit = 1"<<endl;
+	int input;
+	cin>>input;
+	switch(input){
+		case 0:{
+			int numcount = 0;
+			for(int i = 0; i < cardBuffer.size(); i++){
+				if(cardBuffer[i]->value == find->value){
+					numcount++;
+				}
+			}
+			cout<<"There are "<<numcount<<" cards with a value of "<<find->value<<endl;
+			return;
+		}
+		case 1:{
+			int numcount = 0;
+			for(int i = 0; i < cardBuffer.size(); i++){
+				if(cardBuffer[i]->suite == find->suite){
+					numcount++;
+				}
+			}
+			cout<<"There are "<<numcount<<" cards with a suit of "<<find->suite<<endl;
+			return;
+		}
+	}
+}
 
