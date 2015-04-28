@@ -11,6 +11,8 @@ deck::deck()
 
 deck::~deck()
 {
+    //THIS IS BROKEN
+    /*
 	for(int i = 0; i < cardBuffer.size(); i++){
 		delete[] cardBuffer[i];
 	}
@@ -20,39 +22,45 @@ deck::~deck()
 	while(!removedCards.empty()){
 		removedCards.pop();
 	}
+	*/
 }
 
 //Creates the deck of cards.
 void deck::constructDeck()
 {
 
-    string defaultSuites[4] = {"Hearts", "Clubs", "Diamonds", "Spades"};
+    string defaultSuits[4] = {"Hearts", "Clubs", "Diamonds", "Spades"};
     for(int i = 0; i < 4; i++){
-        suites[i] = defaultSuites[i];
+        suits[i] = defaultSuits[i];
     }
-    int suiteCount = 1;
-    int currentSuite = 0;
+    int suitCount = 1;
+    int currentSuit = 0;
     deckSize = 52;
 
     for(int i = 0; i < 52; i++){
-        suiteCount++;
+        suitCount++;
         card* newCard = new card;
-        newCard->value = suiteCount;
-        newCard->suite = suites[currentSuite];
+        newCard->value = suitCount;
+        newCard->suit = suits[currentSuit];
         cardBuffer.push_back(newCard);
 
-        if(suiteCount == 14){
-            currentSuite++;
-            suiteCount = 1;
+        if(suitCount == 14){
+            currentSuit++;
+            suitCount = 1;
         }
     }
-    shuffleDeck();
 }
 
 //Shuffles current cards in the deck
 void deck::shuffleDeck()
 {
     vector <card*> tempVector = cardBuffer;
+
+    while(cardOrder.empty() != true){
+        cardOrder.pop();
+    }
+
+    cardBuffer.clear();
 
     srand(time(NULL));
     int vectorSize = deckSize;
@@ -61,16 +69,10 @@ void deck::shuffleDeck()
         int newPosition = rand() % vectorSize;
         vectorSize--;
         cardOrder.push(tempVector[newPosition]);
-        cardBuffer[i] = tempVector[newPosition];
+        cardBuffer.push_back(tempVector[newPosition]);
         tempVector.erase(tempVector.begin() + newPosition);
     }
-
-    //for(int i = 0; i < deckSize; i++){
-        //cout<<cardOrder.front()->suite<<", "<<cardOrder.front()->value<<endl;
-        //cardOrder.pop();
-        //cout<<cardBuffer[i]->suite<<", "<<cardBuffer[i]->value<<endl;
-    //}
-
+    tempVector.clear();
 }
 
 //Returns a pointer to a card
@@ -87,27 +89,25 @@ card* deck::drawCard()
 //Reconstructs a deck of 52 cards
 void deck::resetDeck()
 {
-    cout<<"clearing"<<endl;
     cardBuffer.clear();
-    for(int i = 0; i < cardOrder.size(); i++){
+    while(cardOrder.empty() != true){
         cardOrder.pop();
     }
     constructDeck();
-    cout<<"reset complete"<<endl;
 }
 
 //Changes a specified suite of a deck and all following cards
-void deck::changeSuite(string oldSuite, string newSuite)
+void deck::changeSuit(string oldSuit, string newSuit)
 {
     cout<<"swapping"<<endl;
     for(int i = 0; i < 4; i++){
-        if(suites[i] == oldSuite){
-            suites[i] = newSuite;
+        if(suits[i] == oldSuit){
+            suits[i] = newSuit;
         }
     }
     for(int i = 0; i < deckSize; i++){
-        if(cardBuffer[i]->suite == oldSuite){
-            cardBuffer[i]->suite = newSuite;
+        if(cardBuffer[i]->suit == oldSuit){
+            cardBuffer[i]->suit = newSuit;
         }
     }
 }
@@ -115,7 +115,7 @@ void deck::changeSuite(string oldSuite, string newSuite)
 void deck::showDeck()
 {
     for(int i = 0; i < cardBuffer.size(); i++){
-        cout<<cardBuffer[i]->suite<<", "<<cardBuffer[i]->value<<endl;
+        cout<<cardBuffer[i]->suit<<", "<<cardBuffer[i]->value<<endl;
     }
 }
 
@@ -123,6 +123,7 @@ void deck::showDeck()
 void deck::replaceCard(){
 	card* replace = removedCards.front();
 	cardOrder.push(replace);
+	cardBuffer.push_back(replace);
 	removedCards.pop();
 	deckSize++;
 }
@@ -132,7 +133,7 @@ void deck::irregularDeck(card* array[], int length){
 	for(int i = 0; i < length; i++){
 		cardOrder.pop();
 		cardOrder.push(array[i]);
-		cout<<"Entered "<<array[i]->value<<" of "<<array[i]->suite<<endl;
+		cout<<"Entered "<<array[i]->value<<" of "<<array[i]->suit<<endl;
 	}
 	return;
 }
@@ -157,13 +158,12 @@ void deck::findRemaining(card* find){
 		case 1:{
 			int numcount = 0;
 			for(int i = 0; i < deckSize; i++){
-				if(cardBuffer[i]->suite == find->suite){
+				if(cardBuffer[i]->suit == find->suit){
 					numcount++;
 				}
 			}
-			cout<<"There are "<<numcount<<" cards with a suit of "<<find->suite<<endl;
+			cout<<"There are "<<numcount<<" cards with a suit of "<<find->suit<<endl;
 			return;
 		}
 	}
 }
-
