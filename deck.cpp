@@ -110,3 +110,40 @@ void deck::showDeck()
     }
 }
 
+// Takes a number and a suit, and replaces it with another number and suit. Will do for any card in the deck
+void deck::replaceCard(int number1, string suit1, int number2, string suit2){
+	cout<<"Replace all or just one?: "<<endl;
+	cout<<"All = 0"<<endl<<"One = 1"<<endl;
+	int decision;
+	cin>>decision;
+	switch(decision){
+		case 1:{
+			for(int i = 0; i < cardBuffer.size(); i++){
+				if(cardBuffer[i]->value == number1 and cardBuffer[i]->suite == suit1){
+					cardBuffer[i]->value = number2;
+					cardBuffer[i]->suite = suit2;
+					cout<<number1<<" of "<<suit1<<" replaced with "<<number2<<" of "<<suit2<<endl;
+					return;
+				}
+			}
+			cout<<"Card not found!"<<endl;
+			return;
+		}
+		case 2:{
+			int replaced = 0;
+			for(int i = 0; i < cardBuffer.size(); i++){
+				if(cardBuffer[i]->value == number1 and cardBuffer[i]->suite == suit1){
+					cardBuffer[i]->value = number2;
+					cardBuffer[i]->suite = suit2;
+					cout<<number1<<" of "<<suit1<<" replaced with "<<number2<<" of "<<suit2<<endl;
+					replaced++;
+				}
+			}
+			cout<<"All cards found were replaced; total replaced: "<<replaced;
+			return;
+		}
+	}
+}
+
+
+

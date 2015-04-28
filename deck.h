@@ -17,7 +17,7 @@ class deck
         virtual ~deck(); //Daniel
         card* drawCard(); //Daniel
         void shuffleDeck(); //Daniel
-        void replaceCard(); //Joaquin
+        void replaceCard(int number1, std::string suit1, int number2, std::string suit2); //Joaquin
         void showDeck(); //Daniel
         void resetDeck(); //Daniel
         void irregularDeck(card arrayOfNewCards[]); //Joaquin
