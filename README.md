@@ -32,6 +32,6 @@ Joaquin Lagarrigue
 
 
 #Open issues/Bugs
-No bugs yet!
+Deconstructor breaks program when in use
 
 
