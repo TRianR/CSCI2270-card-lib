@@ -11,7 +11,15 @@ deck::deck()
 
 deck::~deck()
 {
-
+	for(int i = 0; i < cardBuffer.size(); i++){
+		delete[] cardBuffer[i];
+	}
+	while(!cardOrder.empty()){
+		cardOrder.pop();
+	}
+	while(!removedCards.empty()){
+		removedCards.pop();
+	}
 }
 
 //Creates the deck of cards.

@@ -28,4 +28,6 @@ int main()
     newDeck.resetDeck();
 
     newDeck.showDeck();
+	
+	newDeck.~deck();
 }
