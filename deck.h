@@ -20,7 +20,7 @@ class deck
         void replaceCard(int number1, std::string suit1, int number2, std::string suit2); //Joaquin
         void showDeck(); //Daniel
         void resetDeck(); //Daniel
-        void irregularDeck(card arrayOfNewCards[]); //Joaquin
+        void irregularDeck(card* arrayOfNewCards[], int l); //Joaquin
         void changeSuite(std::string oldSuite, std::string newSuite); //Daniel
         //add two more functions
     protected:

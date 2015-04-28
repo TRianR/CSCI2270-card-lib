@@ -145,5 +145,14 @@ void deck::replaceCard(int number1, string suit1, int number2, string suit2){
 	}
 }
 
+//Replaces normal generated deck with deck of user's choosing
+void deck::irregularDeck(card* array[], int length){
+	for(int i = 0; i < length; i++){
+		cardBuffer[i] = array[i];
+		cout<<"Entered "<<array[i]->value<<" of "<<array[i]->suite<<endl;
+	}
+	return;
+}
+
 
 
