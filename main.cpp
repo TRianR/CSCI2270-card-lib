@@ -5,6 +5,9 @@ using namespace std;
 
 int main()
 {
+    vector<card*> Drawn; //TRianR
+    int counterDrawn = 0; //TRianR
+
     deck newDeck;
     while(true){
         cout<<"|======Testing Program======|"<<endl;
@@ -17,6 +20,7 @@ int main()
         cout<<"7. Custom Deck"<<endl;
         cout<<"8. Find Remaining"<<endl;
         cout<<"9. Quit"<<endl;
+        cout<<"10. Show Drawn Card(s)"<<endl; //TRianR
 
         int userInput;
         cin >> userInput;
@@ -27,12 +31,22 @@ int main()
         if(userInput == 2){
             card* newCard1 = newDeck.drawCard();
             cout<<newCard1->suit<<", "<<newCard1->value<<endl;
+            counterDrawn++; // TRianR
+            Drawn.push_back(newCard1); //TRianR
         }
         if(userInput == 3){
             newDeck.replaceCard();
+            Drawn.pop_back(); //TRianR
+            counterDrawn--; //TRianR
         }
         if(userInput == 4){
             newDeck.resetDeck();
+            //TRianR ----------------
+            for(int i = 0; i < counterDrawn; i++) {
+                Drawn.pop_back();
+            }
+            counterDrawn = 0;
+            //TRianR ----------------
         }
         if(userInput == 5){
             newDeck.showDeck();
@@ -70,5 +84,18 @@ int main()
         if(userInput == 9){
             return 0;
         }
+        //TRianR   ------------------------
+        if(userInput == 10) {
+            if(Drawn.size() == 0) {
+                cout << "You have yet to draw a card." << endl;
+            }
+            else {
+                cout << "You have drawn " << counterDrawn << " card(s)." << endl;
+                for(int i = 0; i < counterDrawn; i++) {
+                    cout << Drawn[i]->suit << ", " << Drawn[i]->value << endl;
+                }
+            }
+        }
+        //TRianR   --------------------------
     }
 }
