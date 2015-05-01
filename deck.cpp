@@ -83,8 +83,28 @@ card* deck::drawCard()
 	cardOrder.pop();
     cardBuffer.erase(cardBuffer.begin());
     deckSize--;
+
+//TRianR ----------------------------------------
+    counterDrawn++;
+    Drawn.push_back(returnValue);
+//TRianR ----------------------------------------
+
     return returnValue;
 }
+
+//TRianR ------------------------------------------
+void deck::showCards() {
+    if(counterDrawn == 0) {
+            cout << "You have yet to draw a card." << endl;
+        }
+        else {
+            cout << "You have drawn " << counterDrawn << " card(s)." << endl;
+            for(int i = 0; i < counterDrawn; i++) {
+                cout << Drawn[i]->suit << ", " << Drawn[i]->value << endl;
+            }
+        }
+}
+//TRianR -------------------------------------------
 
 //Reconstructs a deck of 52 cards
 void deck::resetDeck()
@@ -93,6 +113,13 @@ void deck::resetDeck()
     while(cardOrder.empty() != true){
         cardOrder.pop();
     }
+    // TRianR -------------------------------------
+    for(int i = 0; i < counterDrawn; i++) {
+        Drawn.pop_back();
+    }
+    counterDrawn = 0;
+    // TRianR -------------------------------------
+
     constructDeck();
 }
 
@@ -126,6 +153,16 @@ void deck::replaceCard(){
 	cardBuffer.push_back(replace);
 	removedCards.pop();
 	deckSize++;
+
+	//TRianR ------------------------------------
+	Drawn.pop_back();
+	if(counterDrawn > 0) {
+        counterDrawn--;
+	}
+	else{
+        counterDrawn = 0;
+	}
+	//TRianR ------------------------------------
 }
 
 //Replaces normal generated deck with deck of user's choosing

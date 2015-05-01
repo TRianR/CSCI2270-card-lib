@@ -22,6 +22,7 @@ class deck
         void resetDeck(); //Daniel
         void irregularDeck(card* arrayOfNewCards[], int l); //Joaquin
         void changeSuit(std::string oldSuit, std::string newSuit); //Daniel
+        void showCards(); // TRianR
 	void findRemaining(card* find); //Joaquin
 
     protected:
@@ -33,6 +34,8 @@ class deck
         std::vector<card*> cardBuffer;
         std::queue<card*> cardOrder;
         std::queue<card*> removedCards;
+        std::vector<card*> Drawn; //TRianR
+        int counterDrawn = 0; // TRianR
 };
 
 #endif // DECK_H
